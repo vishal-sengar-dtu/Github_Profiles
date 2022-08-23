@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Github</string>
+    <string name="search_btn_txt">Search GitHub profile</string>
+    <string name="username">Enter username</string>
+    <string name="signin_txt">By signing in you accept our <a href="https://docs.github.com/en/site-policy/github-terms/github-terms-of-service">Terms of use</a> and <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">Privacy policy</a>.</string>
+    <string name="not_found">Page not found :(</string>
+    <string name="error">404</string>
+    <string name="not_found_msg">The requested page is not found.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cover">cover</string>
+    <string name="username1">\@username</string>
+    <string name="_26">26</string>
+    <string name="github_profile">Github Profile</string>
+    <string name="_404">404</string>
+    <string name="_2022_github_inc">© 2022 GitHub, Inc.</string>
+    <string name="githubcopyright">githubCopyright</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="star">Star</string>
+    <string name="habit_tracker">Habit Tracker</string>
+    <string name="ispublic">isPublic</string>
+    <string name="a_mini_habit_tracker_app">A mini habit tracker app</string>
+    <string name="habit">habit</string>
+    <string name="app">app</string>
+    <string name="javascript">Javascript</string>
+    <string name="stars">stars</string>
+    <string name="_1_250">1,250</string>
+    <string name="forks">forks</string>
+    <string name="_500">500</string>
+    <string name="updated_yesterday">Updated yesterday</string>
+    <string name="contributors">Contributors</string>
+    <string name="profile">Profile Image</string>
+</resources>
