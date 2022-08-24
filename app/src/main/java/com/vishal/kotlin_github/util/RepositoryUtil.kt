@@ -5,7 +5,7 @@ import com.vishal.kotlin_github.R
 class RepositoryUtil() {
 
     fun getUsername(fullName: String): String{
-        var index: Int = fullName.indexOf('/')
+        val index: Int = fullName.indexOf('/')
         return fullName.substring(0, index)
     }
 

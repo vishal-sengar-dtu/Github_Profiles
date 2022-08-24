@@ -35,6 +35,7 @@ class ProfileViewModel(private val github: GithubInterface): ViewModel() {
 
     init{
         _userLoading.value = true
+        _userFailure.value = false
         _repoLoading.value = true
         _repoFailure.value = false
     }
@@ -56,7 +57,7 @@ class ProfileViewModel(private val github: GithubInterface): ViewModel() {
     fun repoApiCall() = viewModelScope.launch {
         val response = github.getRepositoryList(username)
 
-        if(response.isSuccessful){
+        if(response.isSuccessful && response.body()?.isNotEmpty() == true){
             _repoLoading.value = false
             _repoResponse.postValue(response.body())
         } else {

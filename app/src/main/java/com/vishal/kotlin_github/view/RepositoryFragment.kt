@@ -62,11 +62,11 @@ class RepositoryFragment : Fragment(), RepositoryClickListner{
         return view
     }
 
-    override fun onRepositoryClickListener(username: String, repositoryName: String) {
+    override fun onRepositoryClickListener(username: String, repository: String) {
         startActivity(
             Intent(context, ContributorActivity::class.java)
                 .putExtra("username", username)
-                .putExtra("repository", repositoryName)
+                .putExtra("repository", repository)
         )
 
     }

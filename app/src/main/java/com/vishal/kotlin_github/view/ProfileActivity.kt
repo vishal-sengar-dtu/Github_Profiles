@@ -41,7 +41,7 @@ class ProfileActivity : AppCompatActivity(){
                 //DATA BINDING
                 binding.user = it
                 Picasso.get().load(it.avatarUrl)
-                    .resize(300, 300)
+                    .resize(250, 250)
                     .placeholder(R.drawable.hint)
                     .transform(CircleTransform())
                     .into(binding.imageView)
@@ -68,8 +68,7 @@ class ProfileActivity : AppCompatActivity(){
             if(it){
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.rootContainer, NotFoundFragment())
-                    .addToBackStack("PageNotFound")
+                    .add(R.id.rootContainer, NotFoundFragment())
                     .commit()
             }
         }
