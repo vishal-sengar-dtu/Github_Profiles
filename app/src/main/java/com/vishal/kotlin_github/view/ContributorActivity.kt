@@ -10,11 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vishal.kotlin_github.R
 import com.vishal.kotlin_github.adapter.ContributorClickListner
 import com.vishal.kotlin_github.adapter.ContributorRVAdapter
-import com.vishal.kotlin_github.apimanager.GithubInterface
-import com.vishal.kotlin_github.apimanager.RetrofitService
 import com.vishal.kotlin_github.databinding.ActivityContributorBinding
-import com.vishal.kotlin_github.databinding.ActivityLoginBinding
-import com.vishal.kotlin_github.model.ContributorsItem
+import com.vishal.kotlin_github.model.ContributorsItemModel
+import com.vishal.kotlin_github.network.NetworkRepositoryImpl
+import com.vishal.kotlin_github.network.RetrofitService
 import com.vishal.kotlin_github.viewmodel.vmfactory.ContributorVMFactory
 import com.vishal.kotlin_github.viewmodel.ContributorViewModel
 
@@ -23,7 +22,7 @@ class ContributorActivity : AppCompatActivity(), ContributorClickListner {
 
     private lateinit var binding: ActivityContributorBinding
     private lateinit var viewModel: ContributorViewModel
-    private lateinit var contributorList: List<ContributorsItem>
+    private lateinit var contributorList: List<ContributorsItemModel>
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +34,11 @@ class ContributorActivity : AppCompatActivity(), ContributorClickListner {
         recyclerView = findViewById(R.id.recyclerView)
 
         //INSTANTIATE CONTRIBUTOR VIEW MODEL
-        val github: GithubInterface = RetrofitService.getInstance(false)
-        viewModel = ViewModelProvider(this, ContributorVMFactory(github))[ContributorViewModel::class.java]
+        //val github = RetrofitService.getInstance(false)
+        viewModel = ViewModelProvider(
+            this,
+            ContributorVMFactory(NetworkRepositoryImpl())
+        )[ContributorViewModel::class.java]
 
         viewModel.username = intent.getStringExtra("username").toString()
         viewModel.repository = intent.getStringExtra("repository").toString()

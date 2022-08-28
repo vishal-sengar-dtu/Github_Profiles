@@ -1,9 +1,8 @@
-package com.vishal.kotlin_github.apimanager
+package com.vishal.kotlin_github.network
 
 import com.vishal.kotlin_github.model.ContributorsItem
 import com.vishal.kotlin_github.model.RepositoryItem
 import com.vishal.kotlin_github.model.User
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -25,12 +24,12 @@ interface GithubInterface {
 
     //MOCK CONTRACTS
     @GET("v3/2f19739c-f5ef-4516-8845-ee11f6d1c07a")
-    suspend fun getMockUserObject() : Response<User>
+    suspend fun getUserObject() : Response<User>
 
     @GET("v3/e689a0cf-0387-434d-910b-27c3172922c7")
-    suspend fun getMockRepositoryList() : Response<List<RepositoryItem>>
+    suspend fun getRepositoryList() : Response<List<RepositoryItem>>
 
     @GET("v3/fbe6ec73-23b2-408b-a07f-6d43df78bd96")
-    suspend fun getMockContributorList() : Response<List<ContributorsItem>>
+    suspend fun getContributorList() : Response<List<ContributorsItem>>
 
 }

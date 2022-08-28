@@ -8,9 +8,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 import com.vishal.kotlin_github.R
 import com.vishal.kotlin_github.adapter.ViewPagerAdapter
-import com.vishal.kotlin_github.apimanager.GithubInterface
-import com.vishal.kotlin_github.apimanager.RetrofitService
+import com.vishal.kotlin_github.network.GithubInterface
+import com.vishal.kotlin_github.network.RetrofitService
 import com.vishal.kotlin_github.databinding.ActivityProfileBinding
+import com.vishal.kotlin_github.network.NetworkRepositoryImpl
 import com.vishal.kotlin_github.util.CircleTransform
 import com.vishal.kotlin_github.viewmodel.ProfileViewModel
 import com.vishal.kotlin_github.viewmodel.vmfactory.ProfileVMFactory
@@ -24,9 +25,14 @@ class ProfileActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
-        val github: GithubInterface = RetrofitService.getInstance(false)
-        viewModel = ViewModelProvider(this, ProfileVMFactory(github))[ProfileViewModel::class.java]
         setContentView(binding.root)
+
+        //INSTANTIATE PROFILE VIEW MODEL
+        //val github = RetrofitService.getInstance(false)
+        viewModel = ViewModelProvider(
+            this,
+            ProfileVMFactory(NetworkRepositoryImpl())
+        )[ProfileViewModel::class.java]
 
         //GETTING DATA FROM LOGIN ACTIVITY
         username = intent.getStringExtra("username").toString()

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.vishal.kotlin_github.R
 import com.vishal.kotlin_github.model.ContributorsItem
+import com.vishal.kotlin_github.model.ContributorsItemModel
 import com.vishal.kotlin_github.util.CircleTransform
 
 
@@ -18,7 +19,7 @@ interface ContributorClickListner {
 
 //CONTRIBUTOR RECYCLER VIEW ADAPTER
 class ContributorRVAdapter(
-    private val contributorList: List<ContributorsItem>,
+    private val contributorList: List<ContributorsItemModel>,
     private val contributorClickListner: ContributorClickListner
     ) :
     RecyclerView.Adapter<ContributorHolder>() {
@@ -43,7 +44,7 @@ class ContributorHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val user: TextView = itemView.findViewById(R.id.login)
     private val contributions: TextView = itemView.findViewById(R.id.contributions)
 
-    fun bind(contributorData: ContributorsItem, contributorClickListner: ContributorClickListner){
+    fun bind(contributorData: ContributorsItemModel, contributorClickListner: ContributorClickListner){
         username = contributorData.login.toString()
 
         user.text = username

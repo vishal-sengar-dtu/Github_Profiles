@@ -1,8 +1,12 @@
 package com.vishal.kotlin_github.util
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.vishal.kotlin_github.R
+import java.time.LocalDate
+import java.time.LocalDateTime
 
-class RepositoryUtil() {
+object RepositoryUtil {
 
     fun getUsername(fullName: String): String{
         val index: Int = fullName.indexOf('/')
@@ -29,8 +33,11 @@ class RepositoryUtil() {
         return arrImg[index]
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getLastUpdated(updatedAt: String): String {
-        val date: String = updatedAt.substring(0, 11)
+
+        val date = updatedAt.substring(0, 10)
+        val current = LocalDateTime.now()
         return "Updated yesterday"
     }
 }

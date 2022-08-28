@@ -4,19 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vishal.kotlin_github.apimanager.GithubInterface
+import com.vishal.kotlin_github.network.GithubInterface
 import com.vishal.kotlin_github.model.ContributorsItem
+import com.vishal.kotlin_github.model.ContributorsItemModel
+import com.vishal.kotlin_github.network.NetworkRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class ContributorViewModel(private val github: GithubInterface) : ViewModel(){
+class ContributorViewModel(private val network: NetworkRepositoryImpl) : ViewModel(){
     lateinit var username: String
     lateinit var repository: String
 
-    private val _response = MutableLiveData<List<ContributorsItem>>()
-    val response: LiveData<List<ContributorsItem>> get() = _response
+    private val _response = MutableLiveData<List<ContributorsItemModel>>()
+    val response: LiveData<List<ContributorsItemModel>> get() = _response
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
@@ -32,11 +34,11 @@ class ContributorViewModel(private val github: GithubInterface) : ViewModel(){
 
     //CONTRIBUTOR API CALLED
     private suspend fun contributorApiCall() = viewModelScope.launch {
-        val response = github.getContributorList(username, repository)
+        val contributorList = network.getContributorList(username, repository)
 
-        if(response.isSuccessful){
+        if(contributorList.isNotEmpty()){
             _loading.value = false
-            _response.postValue(response.body())
+            _response.postValue(contributorList)
         } else {
             _loading.value = false
             _failure.value = true

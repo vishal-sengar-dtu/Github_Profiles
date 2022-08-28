@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vishal.kotlin_github.R
 import com.vishal.kotlin_github.adapter.RepositoryClickListner
 import com.vishal.kotlin_github.adapter.RepositoryRVAdapter
-import com.vishal.kotlin_github.apimanager.GithubInterface
-import com.vishal.kotlin_github.apimanager.RetrofitService
 import com.vishal.kotlin_github.databinding.FragmentRepositoryBinding
 import com.vishal.kotlin_github.model.RepositoryItem
+import com.vishal.kotlin_github.model.RepositoryItemModel
+import com.vishal.kotlin_github.network.NetworkRepositoryImpl
+import com.vishal.kotlin_github.network.RetrofitService
 import com.vishal.kotlin_github.viewmodel.ProfileViewModel
 import com.vishal.kotlin_github.viewmodel.vmfactory.ProfileVMFactory
 
@@ -27,7 +27,7 @@ class RepositoryFragment : Fragment(), RepositoryClickListner{
     private var _binding: FragmentRepositoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProfileViewModel
-    private lateinit var repositoryList: List<RepositoryItem>
+    private lateinit var repositoryList: List<RepositoryItemModel>
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -41,8 +41,12 @@ class RepositoryFragment : Fragment(), RepositoryClickListner{
         recyclerView = view.findViewById(R.id.recyclerView)
 
         //INSTANTIATE PROFILE VIEW MODEL FROM PARENT ACTIVITY
-        val github: GithubInterface = RetrofitService.getInstance(false)
-        viewModel = activity?.let { ViewModelProvider(it, ProfileVMFactory(github))[ProfileViewModel::class.java] }!!
+        //val github = RetrofitService.getInstance(false)
+        viewModel = activity?.let {
+            ViewModelProvider(
+                it,
+                ProfileVMFactory(NetworkRepositoryImpl())
+            )[ProfileViewModel::class.java] }!!
 
         //OBSERVING LIVE DATA
         activity?.let{ parent ->
