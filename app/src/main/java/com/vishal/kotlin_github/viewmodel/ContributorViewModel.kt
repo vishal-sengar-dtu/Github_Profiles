@@ -27,13 +27,13 @@ class ContributorViewModel(private val network: NetworkRepositoryImpl) : ViewMod
     val failure: LiveData<Boolean> get() = _failure
 
     init{
+        _response.value = emptyList()
         _loading.value = true
         _failure.value = false
-        CoroutineScope(Dispatchers.IO).launch { contributorApiCall() }
     }
 
     //CONTRIBUTOR API CALLED
-    private suspend fun contributorApiCall() = viewModelScope.launch {
+    fun contributorApiCall() = viewModelScope.launch {
         val contributorList = network.getContributorList(username, repository)
 
         if(contributorList.isNotEmpty()){

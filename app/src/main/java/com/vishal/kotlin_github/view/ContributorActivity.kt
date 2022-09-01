@@ -42,6 +42,7 @@ class ContributorActivity : AppCompatActivity(), ContributorClickListner {
 
         viewModel.username = intent.getStringExtra("username").toString()
         viewModel.repository = intent.getStringExtra("repository").toString()
+        viewModel.contributorApiCall()
 
         //RESPONSE OBSERVER
         viewModel.response.observe(this) {

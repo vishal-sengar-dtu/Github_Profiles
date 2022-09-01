@@ -17,7 +17,7 @@
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/contributor.xml" value="0.1461499493414387" />
         <entry key="app/src/main/res/layout/fragment_contributor.xml" value="0.1897644927536232" />
-        <entry key="app/src/main/res/layout/fragment_not_found.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_not_found.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_repository.xml" value="0.1" />
         <entry key="app/src/main/res/layout/repository.xml" value="0.2925347900390625" />
       </map>

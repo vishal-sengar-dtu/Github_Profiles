@@ -24,14 +24,14 @@ object DataMapper {
         if(response != null && response.isNotEmpty()){
             return response.map{ MapperUtils.mapRepositoryData(it) }
         }
-        return emptyList()
+        return emptyList<RepositoryItemModel>()
     }
 
     fun mappedContributorList(response: List<ContributorsItem>?): List<ContributorsItemModel> {
         if(response != null && response.isNotEmpty()){
             return response.map{ MapperUtils.mapContributorData(it) }
         }
-        return emptyList()
+        return emptyList<ContributorsItemModel>()
     }
 
 }

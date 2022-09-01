@@ -37,6 +37,7 @@ class ProfileViewModel(private val network: NetworkRepositoryImpl): ViewModel() 
     init{
         _userLoading.value = true
         _userFailure.value = false
+        _repoResponse.value = emptyList()
         _repoLoading.value = true
         _repoFailure.value = false
     }
