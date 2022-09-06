@@ -2,7 +2,7 @@
 
 ### Video Walktrough
 
-![]()
+<img src="https://github.com/vishal-sengar-dtu/Github_Profiles/blob/master/github.gif" width="250" height="540"/>
 
 
 Using Github public API allows users to search Github profiles through the username.
